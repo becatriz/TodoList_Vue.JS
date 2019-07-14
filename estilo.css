@@ -48,3 +48,31 @@ table {
     margin-bottom:-10px;
     margin-left: 1px;
   }  
+
+  #menu ul {
+    padding:0px;
+    margin:0px;
+    background-color:#EDEDED;
+    list-style:none;
+}
+
+#menu ul li {
+   display: inline; 
+   font-family: sans-serif;
+   font-size: 20px;
+}
+
+#menu ul li a {
+  padding: 15px 10px;
+  display: inline-block;
+  background-color:#EDEDED;
+  color: #333;
+  text-decoration: none;
+  border-bottom:3px solid #EDEDED;
+}
+
+#menu ul li a:hover {
+  background-color:#D6D6D6;
+  color: #6D6D6D;
+  
+}
