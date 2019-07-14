@@ -52,23 +52,27 @@ table {
   #menu ul {
     padding:0px;
     margin:0px;
-    background-color:#EDEDED;
+    background-color:#42b983;;
     list-style:none;
+    text-align: right;
+  
 }
 
 #menu ul li {
+  
    display: inline; 
    font-family: sans-serif;
    font-size: 20px;
 }
 
 #menu ul li a {
+  
   padding: 15px 10px;
   display: inline-block;
-  background-color:#EDEDED;
+  background-color:#42b983;;
   color: #333;
   text-decoration: none;
-  border-bottom:3px solid #EDEDED;
+  
 }
 
 #menu ul li a:hover {
