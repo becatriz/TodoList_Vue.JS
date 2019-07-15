@@ -27,7 +27,7 @@ export default Vue.component("home", {
     },
     data() {
         return {
-            title: 'Home - Nova Tarefa',
+            title: 'Tarefa',
             exibirFormulario: false
         }
     },

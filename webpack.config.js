@@ -82,7 +82,9 @@ module.exports = {
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 		alias: {
-			vue: 'vue/dist/vue.js'
+			vue: 'vue/dist/vue.js',
+			'vue-router': 'vue-router/dist/vue-router.js',
+			vuex: 'vuex/dist/vuex.js'
 		}
 	}
 };

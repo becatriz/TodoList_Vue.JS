@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import TarefaService from '../service/TarefaService';
-
+import FormatterUtil from '../util/FormatterUtil'
 
 
 //Criação do componente
@@ -19,10 +19,10 @@ export default Vue.component("tabela-tarefas", {
              <th>Ações</th>
          </thead>
          <tbody>
-             <tr v-for="tarefa in tasks">
+             <tr v-for="(tarefa, i) in tasks">
                  <td>{{tarefa.titulo}}</td>
                  <td>{{tarefa.descricao}}</td>
-                 <td>{{formatarData(tarefa.prazo)}}</td>
+                 <td>{{FormatterUtil.formatarData(tarefa.prazo)}}</td>
                  <td>
                      <!--true-value="true" e false-value="false"-->
                      <input type="checkbox" v-model="tarefa.finalizado" @change="marcarTarefa">
@@ -30,7 +30,7 @@ export default Vue.component("tabela-tarefas", {
                  </td>
                  <td>
                  <!-- <router-link to="/detalhe"><a>Detalhe</a></router-link>-->
-                    <a @click='editar'>Detalhe</a>
+                    <a @click='visualizarTarefa(i)'>Detalhe</a>
                  </td>
              </tr>
          </tbody>
@@ -40,7 +40,8 @@ export default Vue.component("tabela-tarefas", {
     //Nao é mais um objeto data mas uma funçao que retorna um objeto
     data() {
         return {
-            tasks: []
+            tasks: [],
+            FormatterUtil: FormatterUtil
 
         }
     },
@@ -49,23 +50,14 @@ export default Vue.component("tabela-tarefas", {
         buscarTarefas() {
             this.tasks = TarefaService.buscarTodos();
         },
-        formatarData(data: string) {
-            //new Date(data);
-            let convertida = new Date(data);
-            let dia = convertida.getDate() + 1;
-            let mes = convertida.getMonth() + 1;
-            let ano = convertida.getFullYear();
-
-            return `${dia}/${mes}/${ano}`
-        },
         //alteracao do input de false p true
         marcarTarefa() {
             TarefaService.atualizarLista(this.tasks);
 
         },
-        editar(){
+        visualizarTarefa(i: number){
             //Ir pagina acoes detalhes
-            this.$router.push("/detalhe")
+            this.$router.push({  name: 'detalhe',params:{ tarefaselecionada: this.tasks[i]}})
         }
 
     },
