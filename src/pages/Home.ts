@@ -17,19 +17,21 @@ export default Vue.component("home", {
         <img src="./img/tarefa.jpg" alt="" height="50" width="50">
         <!--Puxando la do componente a div que foi criada lá-->
         <br>
-        <form-tarefa @voltar="exibirFormulario = false" v-if="exibirFormulario"></form-tarefa>
-        <tabela-tarefas v-else></tabela-tarefas>
+        <form-tarefa @voltar="exibirFormulario = false" v-if="exibirFormulario" ></form-tarefa>
+        <tabela-tarefas @editar="exibirFormulario =true" v-else></tabela-tarefas>
+        
     </div>
     `,
 
      //Componentes que foram criados
      components: {
         TabelaTarefas,
-        FormularioTarefa
+        FormularioTarefa,
+        
     },
     data() {
         return {
-            title: 'Tarefa',
+            title: 'VueJs',
             exibirFormulario: false
         }
     },

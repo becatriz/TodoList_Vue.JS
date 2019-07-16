@@ -30,7 +30,9 @@ export default Vue.component("tabela-tarefas", {
                  </td>
                  <td>
                  <!-- <router-link to="/detalhe"><a>Detalhe</a></router-link>-->
-                    <a @click='visualizarTarefa(i)'>Detalhe</a>
+                    <button @click='visualizarTarefa(i)'>Detalhe</button>
+                    <button @click='editar(i)'>Editar</button>
+                    <button @click='remover(i)'>Remover</button>
                  </td>
              </tr>
          </tbody>
@@ -56,6 +58,15 @@ export default Vue.component("tabela-tarefas", {
         visualizarTarefa(i: number){
             //Ir pagina acoes detalhes
             this.$router.push({  name: 'detalhe',params:{ tarefaselecionada: this.tasks[i]}})
+        },
+        editar(i: number){
+            //Disparar a acao "editar" no vuex
+            this.$store.dispatch('editar',i);
+            //Emite evento para que a Home (pai)    
+            this.$emit('editar');
+        },
+        remover(i: number){
+           
         }
 
     },

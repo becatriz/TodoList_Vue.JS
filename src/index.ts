@@ -40,6 +40,7 @@ const store = new Vuex.Store({
     //methods - actions
     state:{
         tarefas: [],
+        indiceedicao: null,
         user:{
             nome: 'Rebeca Lopes',
             email: 'becatriz7@gmail.com',
@@ -47,16 +48,36 @@ const store = new Vuex.Store({
         },
         token: '56456c4sc4w8c48w4864acc'
     },
+
     mutations:{
         mutationTarefa(state, lista){
             state.tarefas = lista
+        },
+        mutationIndiceEdicao(state, index){
+            state.indiceedicao = index
         }
+        //pode usar metodo getter para passar o indiceedicao
 
+    },
+    getters:{
+        getTarefaEdicao(state){
+            if (state.indiceedicao != null){
+                return state.tarefas[state.indiceedicao]
+            }else{
+                return {}
+            }
+        }
     },
     actions:{
         async carregarTarefas(context){
             let tarefas = await TarefaService.buscarTodos();
             context.commit('mutationTarefa', tarefas);
+        },
+        editar(context, index){
+            context.commit('mutationIndiceEdicao', index);
+        },
+        limparEdicao(context){
+            context.commit('mutationIndiceEdicao', null);
         }
     }
 
