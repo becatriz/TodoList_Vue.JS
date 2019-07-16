@@ -9,6 +9,8 @@ export default Vue.component("home", {
         `
     <div>
         
+        <h3>{{ user }}</h3>
+
         <h1>{{title}}</h1>
 
         <button @click="exibirFormulario = !exibirFormulario">{{tituloDoBotao}}</button>
@@ -34,6 +36,10 @@ export default Vue.component("home", {
     computed:{
         tituloDoBotao: function(){
             return this.exibirFormulario  ? 'Voltar' : 'Nova Tarefa';
+        },
+        user(){
+            
+            return `Bem-vindo(a): ${this.$store.state.user.nome}`
         }
     }
 

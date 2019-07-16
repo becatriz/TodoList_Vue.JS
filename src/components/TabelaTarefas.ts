@@ -40,16 +40,14 @@ export default Vue.component("tabela-tarefas", {
     //Nao é mais um objeto data mas uma funçao que retorna um objeto
     data() {
         return {
-            tasks: [],
+        
             FormatterUtil: FormatterUtil
 
         }
     },
 
     methods: {
-        buscarTarefas() {
-            this.tasks = TarefaService.buscarTodos();
-        },
+      
         //alteracao do input de false p true
         marcarTarefa() {
             TarefaService.atualizarLista(this.tasks);
@@ -63,8 +61,15 @@ export default Vue.component("tabela-tarefas", {
     },
 
     mounted() {
-        this.buscarTarefas();
+        //this.buscarTarefas();
+        console.log("Chamou o monted da tabela");
+        this.$store.dispatch('carregarTarefas');
 
+    },
+    computed:{
+        tasks: function(){
+           return this.$store.state.tarefas;
+        }
     }
 });
 

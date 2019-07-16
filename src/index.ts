@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import Home from './pages/Home';
 import DetalheTarefa from './pages/DetalheTarefa';
 import NotFound  from './pages/NotFound'
+import TarefaService from './service/TarefaService';
 
 
 //Registro de Uso
@@ -38,14 +39,25 @@ const store = new Vuex.Store({
     //data - state
     //methods - actions
     state:{
-        tarefas: []
+        tarefas: [],
+        user:{
+            nome: 'Rebeca Lopes',
+            email: 'becatriz7@gmail.com',
+            level: 'adm-da-porra-toda'
+        },
+        token: '56456c4sc4w8c48w4864acc'
     },
     mutations:{
-        
+        mutationTarefa(state, lista){
+            state.tarefas = lista
+        }
 
     },
     actions:{
-
+        async carregarTarefas(context){
+            let tarefas = await TarefaService.buscarTodos();
+            context.commit('mutationTarefa', tarefas);
+        }
     }
 
 })
@@ -53,5 +65,6 @@ const store = new Vuex.Store({
 
 new Vue({
     el: '#app',
-    router
+    router,
+    store
 });
