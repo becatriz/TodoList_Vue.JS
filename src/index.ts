@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import DetalheTarefa from './pages/DetalheTarefa';
 import NotFound  from './pages/NotFound'
 import TarefaService from './service/TarefaService';
+import { stat } from 'fs';
 
 
 //Registro de Uso
@@ -51,12 +52,18 @@ const store = new Vuex.Store({
 
     mutations:{
         mutationTarefa(state, lista){
-            state.tarefas = lista
+            state.tarefas = lista;
         },
         mutationIndiceEdicao(state, index){
-            state.indiceedicao = index
+            state.indiceedicao = index;
+        },
+        mutationSalvarTarefa(state, task){
+            state.tarefas[state.indiceedicao] = task;
+        },
+        mutationCadastraTarefa(state, task){
+            state.tarefas.push(task);
         }
-        //pode usar metodo getter para passar o indiceedicao
+        
 
     },
     getters:{
@@ -78,8 +85,17 @@ const store = new Vuex.Store({
         },
         limparEdicao(context){
             context.commit('mutationIndiceEdicao', null);
+        },
+        salvarTarefa(context, task){
+            if(context.state.indiceedicao ==  null){
+                context.commit('mutationCadastraTarefa', task);            
+            }else{  
+                context.commit('mutationSalvarTarefa',task);
+            }
+            TarefaService.atualizarLista(this.state.tarefas);
         }
     }
+                
 
 })
 

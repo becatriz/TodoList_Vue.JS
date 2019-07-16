@@ -12,7 +12,7 @@ export default Vue.component("form-tarefa", {
         <input type="text" placeholder="Descrição da Tarefa" v-model="task.descricao">
         <input type="date" placeholder="Prazo conclusão" v-model="task.prazo">
 
-        <button type="button" @click="cadastrar">Salvar Tarefa</button>
+        <button type="button" @click="salvar">Salvar Tarefa</button>
         <button type="button" @click="cancelar">Cancelar</button>
     </form>
     `,
@@ -22,14 +22,13 @@ export default Vue.component("form-tarefa", {
         }
     },
     methods: {
-        cadastrar() {
-            TarefaService.cadastrar(this.task);
-            //Limpar campos apos salvar
-            this.task = {};
-            //Emissao do evento de filho p/ Pai
-            this.$emit('voltar')
-
+        salvar() {
+            
+            this.$store.dispatch('salvarTarefa', this.task);
+            this.cancelar();
         },
+
+
         cancelar() {
             this.task = {};
             this.$store.dispatch('limparEdicao');
@@ -47,9 +46,7 @@ export default Vue.component("form-tarefa", {
             get() {
                 return this.$store.getters.getTarefaEdicao;
             },
-            set(taskalterada) {
-                console.log(taskalterada)
-            }
+            
 
 
         }
