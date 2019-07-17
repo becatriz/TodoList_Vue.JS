@@ -66,7 +66,9 @@ export default Vue.component("tabela-tarefas", {
             this.$emit('editar');
         },
         remover(i: number){
-           
+           if(confirm("Tem certeza que deseja remover?")){
+               this.$store.dispatch('remover',i);
+           }
         }
 
     },

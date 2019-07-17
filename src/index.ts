@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import DetalheTarefa from './pages/DetalheTarefa';
 import NotFound  from './pages/NotFound'
 import TarefaService from './service/TarefaService';
-import { stat } from 'fs';
+
 
 
 //Registro de Uso
@@ -62,6 +62,10 @@ const store = new Vuex.Store({
         },
         mutationCadastraTarefa(state, task){
             state.tarefas.push(task);
+        },
+        mutationRemoverTarefa(state, index ){
+            state.tarefas.splice(index, 1);
+
         }
         
 
@@ -93,6 +97,9 @@ const store = new Vuex.Store({
                 context.commit('mutationSalvarTarefa',task);
             }
             TarefaService.atualizarLista(this.state.tarefas);
+        },
+        remover(context,index){
+            context.commit('mutationRemoverTarefa', index);
         }
     }
                 
