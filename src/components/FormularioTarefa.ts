@@ -6,15 +6,42 @@ export default Vue.component("form-tarefa", {
         /*html*/
         `
 
-    <form>
+    <v-form>
+        <v-container grid-list-md>
         <h2>{{indiceEdicao != null ? "Editar Tarefa" : "Nova Tarefa"}}</h2>
-        <input type="text" placeholder="Tipo da Tarefa" v-model="task.titulo">
-        <input type="text" placeholder="Descrição da Tarefa" v-model="task.descricao">
-        <input type="date" placeholder="Prazo conclusão" v-model="task.prazo">
-
-        <button type="button" @click="salvar">Salvar Tarefa</button>
-        <button type="button" @click="cancelar">Cancelar</button>
-    </form>
+            <v-layout row wrap>
+                <v-flex xs12 sm4>
+                    <v-text-field
+                    filled
+                    type="text"
+                    v-model="task.titulo"
+                    label="Tipo da Tarefa"
+                    Tipo da Tarefa
+                    >
+                    </v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                    <v-text-field
+                    filled
+                    type="text" 
+                    label="Descrição da Tarefa"
+                    Descrição da Tarefa
+                    v-model="task.descricao"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4>
+                    <v-text-field 
+                    filled
+                    type="date" 
+                    v-model="task.prazo"
+                    label="Prazo da Tarefa"
+                    Prazo da Tarefa></v-text-field>
+                </v-flex>
+            <v-layout>
+           
+        </v-container>
+        <v-btn small color="primary" type="button" @click="salvar">Salvar</v-btn>
+        <v-btn small color="primary" type="button" @click="cancelar">Cancelar</v-btn>
+    </v-form>
     `,
     data() {
         return {
@@ -45,7 +72,11 @@ export default Vue.component("form-tarefa", {
         task: {
             get() {
                 return this.$store.getters.getTarefaEdicao;
+                
             },
+            set(){
+
+            }
             
 
 

@@ -10,7 +10,7 @@ export default Vue.component("tabela-tarefas", {
     template:
         /*html*/
         `
-         <table>
+         <v-simple-table height="300px">
          <thead>
              <th>Tipo da Tarefa</th>
              <th>Descricão</th>
@@ -30,13 +30,35 @@ export default Vue.component("tabela-tarefas", {
                  </td>
                  <td>
                  <!-- <router-link to="/detalhe"><a>Detalhe</a></router-link>-->
-                    <button @click='visualizarTarefa(i)'>Detalhe</button>
-                    <button @click='editar(i)'>Editar</button>
-                    <button @click='remover(i)'>Remover</button>
+
+            <v-tooltip top>
+                 <template v-slot:activator="{ on }">
+                    <v-btn text v-on="on" icon @click='visualizarTarefa(i)' color="blue"  >
+                        <v-icon>mdi-eye</v-icon>
+                    </v-btn>
+                </template> 
+                    <span>Detalhe Tarefa</span>
+            </v-tooltip >
+            <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                    <v-btn text v-on="on" icon @click='editar(i)' color="green">
+                    <v-icon>mdi-pencil</v-icon>
+                    </v-btn>
+                </template>
+                    <span>Editar Tarefa</span>
+            </v-tooltip >
+            <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                    <v-btn  text v-on="on"  icon @click='remover(i)'color="red" >
+                    <v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                </template>
+                    <span>Excluir Tarefa</span>
+            </v-tooltip >     
                  </td>
              </tr>
          </tbody>
-     </table> 
+     </v-simple-table> 
          
          `,
     //Nao é mais um objeto data mas uma funçao que retorna um objeto

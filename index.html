@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="estilo.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
     <title>ToDoList</title>
 </head>
 
 <body>
-    <div id="app">
+    <v-app id="app">
 
-
-        <nav id="menu">
+        <!-- <nav>
             <ul>
                 <li>
                     <router-link to='/'>Home</router-link>
@@ -22,15 +21,22 @@
                     <router-link to='/detalhe'>Detalhe</router-link>
                 </li>
                 <li>
-                    <router-link to='/erroPaginaNaoEncontrada'></router-link>
+                    <router-link to='/erroPaginaNaoEncontrada'>PNF</router-link>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
 
-        <router-view></router-view>
+        <v-app-bar color="blue" app dark>
+            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <v-toolbar-title>TodoList</v-toolbar-title>
+        </v-app-bar>
+        <v-content>
+            <router-view></router-view>
+        </v-content>
         
-    </div>
-    
+
+    </v-app>
+
 </body>
 
 </html>

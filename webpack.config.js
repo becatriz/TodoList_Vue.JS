@@ -55,7 +55,12 @@ module.exports = {
 				loader: 'ts-loader',
 				include: [path.resolve(__dirname, 'src')],
 				exclude: [/node_modules/]
-			}
+				
+			},
+			{
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader'],
+		 }
 		]
 	},
 
@@ -65,6 +70,7 @@ module.exports = {
 				vendors: {
 					priority: -10,
 					test: /[\\/]node_modules[\\/]/
+					
 				}
 			},
 
@@ -84,7 +90,8 @@ module.exports = {
 		alias: {
 			vue: 'vue/dist/vue.js',
 			'vue-router': 'vue-router/dist/vue-router.js',
-			vuex: 'vuex/dist/vuex.js'
+			vuex: 'vuex/dist/vuex.js',
+			
 		}
 	}
 };
