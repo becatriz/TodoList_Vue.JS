@@ -12,27 +12,40 @@
 <body>
     <v-app id="app">
 
-        <!-- <nav>
-            <ul>
-                <li>
-                    <router-link to='/'>Home</router-link>
-                </li>
-                <li>
-                    <router-link to='/detalhe'>Detalhe</router-link>
-                </li>
-                <li>
-                    <router-link to='/erroPaginaNaoEncontrada'>PNF</router-link>
-                </li>
-            </ul>
-        </nav> -->
-
-        <v-app-bar color="blue" app dark>
+        <v-app-bar color="primary" app dark>
             <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            <v-toolbar-title>TodoList</v-toolbar-title>
+            <v-toolbar-title>{{$route.meta.title}}</v-toolbar-title>
+
+            
+            <v-spacer></v-spacer>
+            <v-btn text to='/' >
+                Home
+            </v-btn>
+            <v-btn text to='/erroPaginaNaoEncontrada'>
+               404
+            </v-btn>
         </v-app-bar>
         <v-content>
             <router-view></router-view>
         </v-content>
+        <div class="text-center ma-2">
+                
+                <v-snackbar
+                  v-model="snackbar.show"
+                  right
+                  :vertical="vertical"
+                  :color="snackbar.color"
+                >
+                  {{snackbar.message}}
+                  <v-btn
+                    color="white"
+                    text
+                    @click="snackbar.show = false"
+                  >
+                    Fechar
+                  </v-btn>
+                </v-snackbar>
+              </div>
         
 
     </v-app>

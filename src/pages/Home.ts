@@ -14,7 +14,16 @@ export default Vue.component("home", {
     <v-container>
         <v-layout row wrap justify-space-between class="my-3">
             <h1>{{title}}</h1>
-            <v-btn color="primary" @click="exibirFormulario = !exibirFormulario">{{tituloDoBotao}}
+
+            <v-btn 
+                color="primary" 
+                @click="exibirFormulario = !exibirFormulario"
+                fab
+                dark
+                >
+                <v-icon>
+                    {{exibirFormulario ?  'mdi-arrow-left' : 'mdi-plus'}}
+                </v-icon>
             </v-btn>
         </v-layout>
         <form-tarefa @voltar="exibirFormulario = false" v-if="exibirFormulario" ></form-tarefa>

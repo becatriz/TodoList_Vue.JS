@@ -14,19 +14,28 @@ export default new VueRouter({
         {   
             
             path: '/', 
-            component: Home
+            component: Home,
+            meta:{
+                title: 'Home'
+            }
             
         },
         {
             path: '/detalhe', 
             component: DetalheTarefa ,
             name: 'detalhe',
-            props: true
+            props: true,
+            meta:{
+                title: 'Detalhe'
+            }
         },
         {   
 
             path: '*', 
-            component: NotFound
+            component: NotFound,
+            meta:{
+                title: '404'
+            }
         }
     ]
 });

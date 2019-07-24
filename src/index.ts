@@ -1,11 +1,20 @@
-import Vue from 'vue'
-import store from './store'
-import router  from './router'
-import vuetify from './pluguins/vuetify'
+import Vue from 'vue';
+import store from './store';
+import router  from './router';
+import vuetify from './pluguins/vuetify';
+import  './pluguins/vee-validate';
+
 
 new Vue({
     el: '#app',
     router,
     store,
-    vuetify
+    vuetify,
+    computed:{
+        snackbar(){
+            return this.$store.state.snackbar
+        }
+    }
+    
+    
 });
