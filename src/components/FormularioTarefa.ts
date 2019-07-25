@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import TarefaService from '../service/TarefaService';
+
 
 export default Vue.component("form-tarefa", {
     template:
@@ -71,7 +71,7 @@ export default Vue.component("form-tarefa", {
              </v-flex>
             </v-layout>
         </v-container>
-        <v-btn :loading="Carregando" small color="primary" type="button" @click="salvar">Salvar</v-btn>
+        <v-btn small color="primary" type="button" @click="salvar">Salvar</v-btn>
         <v-btn small color="primary" type="button" @click="cancelar">Cancelar</v-btn>
     </v-form>
     `,
@@ -85,24 +85,23 @@ export default Vue.component("form-tarefa", {
         async salvar() {
            if( await this.$validator.validate()){
             this.carregando = false;
-            this.$store.dispatch('salvarTarefa', this.task);
-            this.$store.dispatch('showSuccessSnackbar',  'Tarefa salva com sucesso') 
-        
+            this.$store.dispatch('tarefas/salvarTarefa', this.task);
+            this.$store.dispatch('alertas/showSuccessSnackbar',  'Tarefa salva com sucesso') 
+            
            
             this.cancelar();
          } else{
                 this.carregando = false;
-                this.$store.dispatch('showErrosSnackbar', 'Preencha todos os campos') 
+                this.$store.dispatch('alertas/showErrosSnackbar', 'Preencha todos os campos') 
                 
             }
          
          
         },
 
-
         cancelar() {
             this.task = {};
-            this.$store.dispatch('limparEdicao');
+            this.$store.dispatch('tarefas/limparEdicao');
             this.$emit('voltar');
         }
 
@@ -111,11 +110,11 @@ export default Vue.component("form-tarefa", {
     },
     computed: {
         indiceEdicao() {
-            return this.$store.state.indiceedicao;
+            return this.$store.state.tarefas.indiceedicao;
         },
         task: {
             get() {
-                return this.$store.getters.getTarefaEdicao;
+                return this.$store.getters['tarefas/getTarefaEdicao'];
                 
             },
             set(){

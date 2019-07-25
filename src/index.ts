@@ -12,7 +12,7 @@ new Vue({
     vuetify,
     computed:{
         snackbar(){
-            return this.$store.state.snackbar
+            return this.$store.state.alertas.snackbar
         }
     }
     

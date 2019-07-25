@@ -75,21 +75,27 @@ export default Vue.component("tabela-tarefas", {
         //alteracao do input de false p true
         marcarTarefa() {
             TarefaService.atualizarLista(this.tasks);
-
+            
         },
         visualizarTarefa(i: number){
             //Ir pagina acoes detalhes
             this.$router.push({  name: 'detalhe',params:{ tarefaselecionada: this.tasks[i]}})
+           
         },
         editar(i: number){
             //Disparar a acao "editar" no vuex
-            this.$store.dispatch('editar',i);
-            //Emite evento para que a Home (pai)    
+            //'tarefas/editar' forma de acessar por modulo
+            this.$store.dispatch('tarefas/editar',i);
+            //Emite evento para que a Home (pai/index.htm)    
             this.$emit('editar');
+            //Chamar o snackInfo de Tarefa editada
+            this.$store.dispatch('alertas/showErrosSnackbar', 'Preencha todos os campos') 
         },
         remover(i: number){
            if(confirm("Tem certeza que deseja remover?")){
-               this.$store.dispatch('remover',i);
+
+            //'tarefas/remover'forma de acessar por modulo
+               this.$store.dispatch('tarefas/remover',i);
            }
         }
 
@@ -98,12 +104,13 @@ export default Vue.component("tabela-tarefas", {
     mounted() {
         //this.buscarTarefas();
         console.log("Chamou o monted da tabela");
-        this.$store.dispatch('carregarTarefas');
+        this.$store.dispatch('tarefas/carregarTarefas');
+        
 
     },
     computed:{
         tasks: function(){
-           return this.$store.state.tarefas;
+           return this.$store.state.tarefas.tarefas;
         }
     }
 });

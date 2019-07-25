@@ -10,7 +10,7 @@ export default Vue.component("home", {
         /*html*/
         `
     <div>
-    <h3>{{ user }}</h3>
+    
     <v-container>
         <v-layout row wrap justify-space-between class="my-3">
             <h1>{{title}}</h1>
@@ -48,10 +48,7 @@ export default Vue.component("home", {
         tituloDoBotao: function () {
             return this.exibirFormulario ? 'Voltar' : 'Nova Tarefa';
         },
-        user() {
-
-            return `Bem-vindo(a): ${this.$store.state.user.nome}`
-        }
+        
     }
 
     
